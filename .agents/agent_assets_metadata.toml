@@ -1,0 +1,44 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "cT2lbEDfoXoYjUqGm9Q0Y"
+uri = "file://CONFIGURACION_GOOGLE.txt"
+type = "text"
+title = "Guía de configuración Google"
+
+[[outputs]]
+id = "uQDpGSn1S3jiddnmqSrBY"
+uri = "file://guia-migracion-vps.txt"
+type = "text"
+title = "Guía de migración a VPS propio"
+
+[[outputs]]
+id = "s23sMe-C1tAt6YeG8dkRt"
+uri = "file://attached_assets/BOTONES_WA_RESELLER.prj.xml"
+type = "unspecified"
+title = "BOTONES_WA_RESELLER.prj.xml (corregido)"
+
+[[outputs]]
+id = "QnlIayI1PBJeznecS3-vR"
+uri = "file://tasker/BotControls.prj.xml"
+type = "unspecified"
+title = "BotControls.prj.xml — solo visual"
+
+[[outputs]]
+id = "jhzukWYQa97dkDD0qtSby"
+uri = "file://tasker/BotControls.scn.xml"
+type = "unspecified"
+title = "1. BotControls.scn.xml — La escena (botones)"
+
+[[outputs]]
+id = "CN3qoNpdjYs3NKf_dH541"
+uri = "file://tasker/BotControls_Mostrar.tsk.xml"
+type = "unspecified"
+title = "2. BotControls_Mostrar.tsk.xml — Task: abrir panel"
+
+[[outputs]]
+id = "uWNW3Zgy-M0SQjZUL_n9K"
+uri = "file://tasker/BotControls_Cerrar.tsk.xml"
+type = "unspecified"
+title = "3. BotControls_Cerrar.tsk.xml — Task: cerrar panel"

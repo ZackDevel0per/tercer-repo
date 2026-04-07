@@ -1,0 +1,139 @@
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║               TIPOS DE CONFIGURACIÓN POR TENANT                     ║
+ * ║  Cada tenant (cliente) tiene su propio conjunto de credenciales     ║
+ * ║  y configuraciones. Este es el contrato central del sistema.        ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+
+export interface TenantConfig {
+  // Identidad
+  id: string;
+  nombre: string;
+  nombreEmpresa: string;
+  adminWhatsapp: string;
+
+  // Google Sheets (datos de clientes)
+  spreadsheetId: string | null;
+  googleServiceAccountJson: string | null;
+
+  // CRM IPTV
+  crmBaseUrl: string;
+  crmUsername: string | null;
+  crmPassword: string | null;
+  crmUsernamePrefix: string;
+
+  // Gmail (detección de pagos automática) — LEGACY, mantenido para referencia futura
+  gmailClientId: string | null;
+  gmailClientSecret: string | null;
+  gmailRefreshToken: string | null;
+  gmailRemitenteFiltro: string | null;
+
+  // VeriPagos.com — generación automática de QR por pago
+  veripagosUsername: string | null;
+  veripagosPassword: string | null;
+
+  // Banco Económico — API QR Simple
+  banecoUsername: string | null;
+  banecoPassword: string | null;
+  banecoAesKey: string | null;
+  banecoCuenta: string | null;
+
+  // Planes personalizados (sobreescribe los defaults)
+  planes: TenantPlan[] | null;
+
+  // QR de pago (URL de imagen que se envía al cliente al elegir un plan)
+  qrPagoUrl: string | null;
+
+  // Enlace del grupo de anuncios (se envía al cliente cuando compra un plan nuevo)
+  enlaceGrupo: string | null;
+
+  // Pushover (notificaciones al admin del tenant)
+  pushoverUserKey: string | null;
+  pushoverApiToken: string | null;
+
+  // Minutos de pausa tras el comando 5 (atención personal)
+  minutosAtencionPersonal: number;
+}
+
+export interface TenantPlan {
+  codigo: string;
+  nombre: string;
+  monto: number;
+  descripcion: string;
+  tolerancia: number;
+  dispositivos: number;
+  duracion: string;
+  dias: number;
+  crmPlanId?: string;
+}
+
+/**
+ * Construye un TenantConfig desde un registro de la tabla tenants de la DB.
+ */
+export function tenantFromDb(row: {
+  id: string;
+  nombre: string;
+  nombreEmpresa: string;
+  adminWhatsapp: string;
+  spreadsheetId: string | null;
+  googleServiceAccountJson: string | null;
+  crmBaseUrl: string | null;
+  crmUsername: string | null;
+  crmPassword: string | null;
+  crmUsernamePrefix: string | null;
+  gmailClientId: string | null;
+  gmailClientSecret: string | null;
+  gmailRefreshToken: string | null;
+  gmailRemitenteFiltro: string | null;
+  veripagosUsername: string | null;
+  veripagosPassword: string | null;
+  banecoUsername: string | null;
+  banecoPassword: string | null;
+  banecoAesKey: string | null;
+  banecoCuenta: string | null;
+  planesJson: string | null;
+  qrPagoUrl: string | null;
+  enlaceGrupo: string | null;
+  pushoverUserKey: string | null;
+  pushoverApiToken: string | null;
+  minutosAtencionPersonal?: string | null;
+}): TenantConfig {
+  let planes: TenantPlan[] | null = null;
+  if (row.planesJson) {
+    try {
+      planes = JSON.parse(row.planesJson);
+    } catch {
+      planes = null;
+    }
+  }
+
+  return {
+    id: row.id,
+    nombre: row.nombre,
+    nombreEmpresa: row.nombreEmpresa,
+    adminWhatsapp: row.adminWhatsapp,
+    spreadsheetId: row.spreadsheetId,
+    googleServiceAccountJson: row.googleServiceAccountJson,
+    crmBaseUrl: row.crmBaseUrl ?? "https://resellermastv.com:8443",
+    crmUsername: row.crmUsername,
+    crmPassword: row.crmPassword,
+    crmUsernamePrefix: row.crmUsernamePrefix ?? "zk",
+    gmailClientId: row.gmailClientId,
+    gmailClientSecret: row.gmailClientSecret,
+    gmailRefreshToken: row.gmailRefreshToken,
+    gmailRemitenteFiltro: row.gmailRemitenteFiltro,
+    veripagosUsername: row.veripagosUsername,
+    veripagosPassword: row.veripagosPassword,
+    banecoUsername: row.banecoUsername,
+    banecoPassword: row.banecoPassword,
+    banecoAesKey: row.banecoAesKey,
+    banecoCuenta: row.banecoCuenta,
+    planes,
+    qrPagoUrl: row.qrPagoUrl,
+    enlaceGrupo: row.enlaceGrupo,
+    pushoverUserKey: row.pushoverUserKey,
+    pushoverApiToken: row.pushoverApiToken,
+    minutosAtencionPersonal: Math.max(1, parseInt(row.minutosAtencionPersonal ?? "30", 10) || 30),
+  };
+}

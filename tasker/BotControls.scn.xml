@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TaskerData sr="" dvi="1" tv="5.12">
+
+  <Scene sr="scen0">
+    <cdate>1700000000000</cdate>
+    <edate>1700000000000</edate>
+    <flags>0</flags>
+    <id>0</id>
+    <nme>BotControls</nme>
+
+    <Item sr="el0" ve="5">
+      <cdate>1700000000000</cdate>
+      <edate>1700000000000</edate>
+      <flags>0</flags>
+      <id>0</id>
+      <nme>btnLimpiar</nme>
+      <Int sr="type" val="6"/>
+      <Str sr="geometry" ve="3">0 0 210 65</Str>
+      <Str sr="label" ve="3">Limpiar</Str>
+      <Str sr="clickTask" ve="3"></Str>
+    </Item>
+
+    <Item sr="el1" ve="5">
+      <cdate>1700000000000</cdate>
+      <edate>1700000000000</edate>
+      <flags>0</flags>
+      <id>1</id>
+      <nme>btnStop</nme>
+      <Int sr="type" val="6"/>
+      <Str sr="geometry" ve="3">0 70 210 65</Str>
+      <Str sr="label" ve="3">Stop</Str>
+      <Str sr="clickTask" ve="3"></Str>
+    </Item>
+
+    <Item sr="el2" ve="5">
+      <cdate>1700000000000</cdate>
+      <edate>1700000000000</edate>
+      <flags>0</flags>
+      <id>2</id>
+      <nme>btnStart</nme>
+      <Int sr="type" val="6"/>
+      <Str sr="geometry" ve="3">0 140 210 65</Str>
+      <Str sr="label" ve="3">Start</Str>
+      <Str sr="clickTask" ve="3"></Str>
+    </Item>
+
+    <Item sr="el3" ve="5">
+      <cdate>1700000000000</cdate>
+      <edate>1700000000000</edate>
+      <flags>0</flags>
+      <id>3</id>
+      <nme>btnSilenciados</nme>
+      <Int sr="type" val="6"/>
+      <Str sr="geometry" ve="3">0 210 210 65</Str>
+      <Str sr="label" ve="3">Silenciados</Str>
+      <Str sr="clickTask" ve="3"></Str>
+    </Item>
+
+    <Item sr="el4" ve="5">
+      <cdate>1700000000000</cdate>
+      <edate>1700000000000</edate>
+      <flags>0</flags>
+      <id>4</id>
+      <nme>btnCerrar</nme>
+      <Int sr="type" val="6"/>
+      <Str sr="geometry" ve="3">0 280 210 45</Str>
+      <Str sr="label" ve="3">X Cerrar</Str>
+      <Str sr="clickTask" ve="3">BotControls Cerrar</Str>
+    </Item>
+
+  </Scene>
+
+</TaskerData>
